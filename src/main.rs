@@ -1,13 +1,13 @@
 #[macro_use] extern crate rocket;
 
-#[get("/hello_world")]
-fn hello_world() -> &'static str {
-    "Hello, world!"
+#[get("/ping")]
+fn ping() -> &'static str {
+    "pong"
 }
 
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/api", routes![hello_world])
-        .mount("/", rocket::fs::FileServer::from(rocket::fs::relative!("/static")))
+        .mount("/api", routes![ping])
+        .mount("/", rocket::fs::FileServer::from("/app/static"))
 }
