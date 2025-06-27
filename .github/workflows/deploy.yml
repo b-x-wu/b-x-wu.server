@@ -45,6 +45,12 @@ jobs:
       - name: Sync server executable
         run: rsync -av --delete --chmod=700 -p build/server b-x-wu@${{ secrets.HOST_NAME }}:~
 
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Sync server config
+        run: rsync -av --delete -p Rocket.toml b-x-wu@${{ secrets.HOST_NAME }}:~
+
       - name: Restart server
         run: |
           ssh b-x-wu@${{ secrets.HOST_NAME }} "./entrypoint.sh"

@@ -1,0 +1,8 @@
+[default.tls]
+certs = "private/rsa_sha256_cert.pem"
+key = "private/rsa_sha256_key.pem"
+
+[release.tls]
+certs = "/ssl/fullchain.pem"
+key = "/ssl/privkey.pem"
+
