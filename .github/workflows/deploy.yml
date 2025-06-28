@@ -43,15 +43,15 @@ jobs:
           ssh-keyscan -H ${{ secrets.HOST_NAME }} > ~/.ssh/known_hosts
 
       - name: Sync server executable
-        run: rsync -av --delete --chmod=700 -p build/server b-x-wu@${{ secrets.HOST_NAME }}:~
+        run: rsync -av --delete --chmod=700 -p build/server b-x-wu@${{ secrets.HOST_NAME }}:~/b-x-wu
 
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Sync server config
-        run: rsync -av --delete -p Rocket.toml b-x-wu@${{ secrets.HOST_NAME }}:~
+        run: rsync -av --delete -p Rocket.toml b-x-wu@${{ secrets.HOST_NAME }}:~/b-x-wu
 
       - name: Restart server
         run: |
-          ssh b-x-wu@${{ secrets.HOST_NAME }} "./entrypoint.sh"
+          ssh b-x-wu@${{ secrets.HOST_NAME }} "./b-x-wu/entrypoint.sh"
 
